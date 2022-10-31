@@ -31,16 +31,21 @@ function init() {
   }
   var but = document.getElementsByTagName('button')[0];
   but.onclick = function(){
-    var image = document.images;
-    
+
     var speechtext =  document.getElementById('text-to-speak').value;
     const utterance = new SpeechSynthesisUtterance(speechtext);
     var selvoice = document.getElementById('voice-select').value;
     utterance.voice = selvoice.value;
     console.log(utterance.voice);
     txt.speak(utterance);
- 
-    
+    if (txt.speaking){
+      var image = document.images;
+      image[0].src = "assets/images/smiling-open.png";
+    }
+    if(!txt.speaking){
+      var image = document.images;
+      image[0].src = "assets/images/smiling.png";
+    }
     
     
   }
